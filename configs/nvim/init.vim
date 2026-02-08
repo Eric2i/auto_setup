@@ -33,7 +33,7 @@ if (has("termguicolors"))
 	set termguicolors
 endif
 syntax enable
-colorscheme dracula
+silent! colorscheme dracula
 
 set splitright
 set splitbelow
