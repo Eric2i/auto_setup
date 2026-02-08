@@ -7,7 +7,9 @@ set -e
 PREFIX="[auto_server_wizard]"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LOCAL_INSTALLERS_DIR="${SCRIPT_DIR}/installers"
+LOCAL_CONFIGS_DIR="${SCRIPT_DIR}/configs"
 GITHUB_RAW_BASE="https://raw.githubusercontent.com/Eric2i/auto_server_wizard/main/installers"
+GITHUB_RAW_BASE_CONFIGS="https://raw.githubusercontent.com/Eric2i/auto_server_wizard/main/configs"
 
 echo "$PREFIX Starting Auto Server Wizard..."
 echo ""
@@ -57,6 +59,11 @@ INSTALLERS=(
 # Run each installer (use local files if available, otherwise download from GitHub)
 for installer in "${INSTALLERS[@]}"; do
     echo "$PREFIX Running installer: $installer"
+
+    # Export variables for use by installer scripts
+    export SCRIPT_DIR
+    export LOCAL_CONFIGS_DIR
+    export GITHUB_RAW_BASE_CONFIGS
 
     # Check if running from a local clone with installers/ directory
     if [ -f "${LOCAL_INSTALLERS_DIR}/${installer}" ]; then

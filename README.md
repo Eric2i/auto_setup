@@ -24,7 +24,10 @@ source ~/.bashrc  # or source ~/.zshrc if using zsh
 
 ## Currently Supported Software
 
-- **Neovim** - Modern Vim-based text editor (installed via AppImage)
+- **Neovim** - Modern Vim-based text editor (installed via tarball)
+  - Includes pre-configured `init.vim` with plugins (Dracula theme, NERDTree, CoC.nvim, vim-surround, nerdcommenter, vim-devicons)
+  - Automatically installs vim-plug and configured plugins
+  - Config originates from [Eric2i/personal-initVim-config](https://github.com/Eric2i/personal-initVim-config)
 - **uv** - Fast Python package manager (installed from GitHub releases)
 - **zsh** - Z Shell (detects system installation or provides guidance)
 - **oh-my-zsh** - Framework for managing zsh configuration with plugins
@@ -46,6 +49,9 @@ The project uses a modular structure:
 .
 ├── README.md              # This file
 ├── setup.sh               # Main orchestrator script
+├── configs/
+│   └── nvim/
+│       └── init.vim       # Neovim configuration file
 └── installers/
     ├── neovim.sh          # Neovim installer module
     ├── uv.sh              # uv installer module
