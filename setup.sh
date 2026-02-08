@@ -18,7 +18,7 @@ mkdir -p ~/.local/bin
 add_to_path() {
     local shell_config=$1
     if [ -f "$shell_config" ]; then
-        if ! grep -q '/.local/bin' "$shell_config"; then
+        if ! grep -q '\$HOME/.local/bin' "$shell_config"; then
             echo "$PREFIX Adding ~/.local/bin to PATH in $shell_config"
             echo '' >> "$shell_config"
             echo '# Added by auto_server_wizard' >> "$shell_config"

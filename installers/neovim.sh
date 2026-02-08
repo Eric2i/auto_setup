@@ -15,17 +15,19 @@ echo "$PREFIX Installing Neovim..."
 
 # Ensure ~/.local/bin exists
 mkdir -p ~/.local/bin
-cd ~/.local/bin
 
 # Download Neovim AppImage
 echo "$PREFIX Downloading Neovim AppImage..."
-curl -fsSL -o nvim-linux-x86_64.appimage https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
+if ! curl -fsSL -o ~/.local/bin/nvim-linux-x86_64.appimage https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage; then
+    echo "$PREFIX ERROR: Failed to download Neovim AppImage"
+    exit 1
+fi
 
 # Make it executable
-chmod +x nvim-linux-x86_64.appimage
+chmod +x ~/.local/bin/nvim-linux-x86_64.appimage
 
 # Create symlink
-ln -sf nvim-linux-x86_64.appimage nvim
+ln -sf ~/.local/bin/nvim-linux-x86_64.appimage ~/.local/bin/nvim
 
 echo "$PREFIX Neovim installed successfully to ~/.local/bin/nvim"
 
