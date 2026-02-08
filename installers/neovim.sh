@@ -13,21 +13,32 @@ fi
 
 echo "$PREFIX Installing Neovim..."
 
-# Ensure ~/.local/bin exists
-mkdir -p ~/.local/bin
+# Detect architecture
+ARCH=$(uname -m)
+case "$ARCH" in
+    x86_64)
+        NVIM_ARCH="x86_64"
+        ;;
+    aarch64|arm64)
+        NVIM_ARCH="arm64"
+        ;;
+    *)
+        echo "$PREFIX ERROR: Unsupported architecture: $ARCH"
+        exit 1
+        ;;
+esac
 
-# Download Neovim AppImage
-echo "$PREFIX Downloading Neovim AppImage..."
-if ! curl -fsSL -o ~/.local/bin/nvim-linux-x86_64.appimage https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage; then
-    echo "$PREFIX ERROR: Failed to download Neovim AppImage"
+# Ensure ~/.local exists
+mkdir -p ~/.local
+
+# Download and extract Neovim tarball
+echo "$PREFIX Downloading Neovim for $NVIM_ARCH..."
+DOWNLOAD_URL="https://github.com/neovim/neovim/releases/latest/download/nvim-linux-${NVIM_ARCH}.tar.gz"
+
+if ! curl -fsSL "$DOWNLOAD_URL" | tar xzf - -C ~/.local --strip-components=1; then
+    echo "$PREFIX ERROR: Failed to download or extract Neovim"
     exit 1
 fi
-
-# Make it executable
-chmod +x ~/.local/bin/nvim-linux-x86_64.appimage
-
-# Create symlink
-ln -sf ~/.local/bin/nvim-linux-x86_64.appimage ~/.local/bin/nvim
 
 echo "$PREFIX Neovim installed successfully to ~/.local/bin/nvim"
 
