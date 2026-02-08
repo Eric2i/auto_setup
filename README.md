@@ -25,10 +25,10 @@ source ~/.bashrc  # or source ~/.zshrc if using zsh
 ## Currently Supported Software
 
 - **Neovim** - Modern Vim-based text editor (installed via AppImage)
+- **uv** - Fast Python package manager (installed from GitHub releases)
 
 ### Coming Soon
 - **zsh** - Z Shell
-- **uv** - Fast Python package installer
 
 ## Features
 
@@ -47,7 +47,8 @@ The project uses a modular structure:
 ├── README.md              # This file
 ├── setup.sh               # Main orchestrator script
 └── installers/
-    └── neovim.sh          # Neovim installer module
+    ├── neovim.sh          # Neovim installer module
+    └── uv.sh              # uv installer module
 ```
 
 ### How It Works

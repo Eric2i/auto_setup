@@ -47,6 +47,7 @@ echo ""
 # List of installers to run
 INSTALLERS=(
     "neovim.sh"
+    "uv.sh"
 )
 
 # Download and run each installer
