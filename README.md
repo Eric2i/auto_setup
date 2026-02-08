@@ -26,9 +26,9 @@ source ~/.bashrc  # or source ~/.zshrc if using zsh
 
 - **Neovim** - Modern Vim-based text editor (installed via AppImage)
 - **uv** - Fast Python package manager (installed from GitHub releases)
-
-### Coming Soon
-- **zsh** - Z Shell
+- **zsh** - Z Shell (detects system installation or provides guidance)
+- **oh-my-zsh** - Framework for managing zsh configuration with plugins
+  - Includes **zsh-autosuggestions** plugin for command suggestions
 
 ## Features
 
@@ -48,7 +48,9 @@ The project uses a modular structure:
 ├── setup.sh               # Main orchestrator script
 └── installers/
     ├── neovim.sh          # Neovim installer module
-    └── uv.sh              # uv installer module
+    ├── uv.sh              # uv installer module
+    ├── zsh.sh             # zsh installer module
+    └── oh-my-zsh.sh       # oh-my-zsh + plugins installer module
 ```
 
 ### How It Works

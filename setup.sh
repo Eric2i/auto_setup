@@ -48,6 +48,8 @@ echo ""
 INSTALLERS=(
     "neovim.sh"
     "uv.sh"
+    "zsh.sh"
+    "oh-my-zsh.sh"
 )
 
 # Download and run each installer
