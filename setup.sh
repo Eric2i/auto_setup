@@ -5,6 +5,8 @@
 set -e
 
 PREFIX="[auto_server_wizard]"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LOCAL_INSTALLERS_DIR="${SCRIPT_DIR}/installers"
 GITHUB_RAW_BASE="https://raw.githubusercontent.com/Eric2i/auto_server_wizard/main/installers"
 
 echo "$PREFIX Starting Auto Server Wizard..."
@@ -52,22 +54,30 @@ INSTALLERS=(
     "oh-my-zsh.sh"
 )
 
-# Download and run each installer
+# Run each installer (use local files if available, otherwise download from GitHub)
 for installer in "${INSTALLERS[@]}"; do
     echo "$PREFIX Running installer: $installer"
-    
-    # Download installer to temp location
-    TEMP_INSTALLER=$(mktemp)
-    if curl -fsSL "${GITHUB_RAW_BASE}/${installer}" -o "$TEMP_INSTALLER"; then
-        chmod +x "$TEMP_INSTALLER"
-        bash "$TEMP_INSTALLER"
-        rm -f "$TEMP_INSTALLER"
+
+    # Check if running from a local clone with installers/ directory
+    if [ -f "${LOCAL_INSTALLERS_DIR}/${installer}" ]; then
+        # Use local installer
+        echo "$PREFIX Using local installer: ${LOCAL_INSTALLERS_DIR}/${installer}"
+        chmod +x "${LOCAL_INSTALLERS_DIR}/${installer}"
+        bash "${LOCAL_INSTALLERS_DIR}/${installer}"
     else
-        echo "$PREFIX ERROR: Failed to download $installer"
-        rm -f "$TEMP_INSTALLER"
-        exit 1
+        # Download installer from GitHub
+        TEMP_INSTALLER=$(mktemp)
+        if curl -fsSL "${GITHUB_RAW_BASE}/${installer}" -o "$TEMP_INSTALLER"; then
+            chmod +x "$TEMP_INSTALLER"
+            bash "$TEMP_INSTALLER"
+            rm -f "$TEMP_INSTALLER"
+        else
+            echo "$PREFIX ERROR: Failed to download $installer"
+            rm -f "$TEMP_INSTALLER"
+            exit 1
+        fi
     fi
-    
+
     echo ""
 done
 
