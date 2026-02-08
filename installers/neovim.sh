@@ -5,6 +5,17 @@ set -e
 
 PREFIX="[auto_server_wizard]"
 
+# Set defaults for environment variables if not provided by setup.sh
+if [ -z "$LOCAL_CONFIGS_DIR" ]; then
+    # When running standalone, try to find the configs directory
+    SCRIPT_DIR_LOCAL="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+    LOCAL_CONFIGS_DIR="${SCRIPT_DIR_LOCAL}/configs"
+fi
+
+if [ -z "$GITHUB_RAW_BASE_CONFIGS" ]; then
+    GITHUB_RAW_BASE_CONFIGS="https://raw.githubusercontent.com/Eric2i/auto_server_wizard/main/configs"
+fi
+
 # ============================================================================
 # 1. Install Neovim Binary (if not already installed)
 # ============================================================================
