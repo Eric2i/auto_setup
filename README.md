@@ -1,15 +1,15 @@
-# Auto Server Wizard 🧙‍♂️
+# Auto Setup 🧙‍♂️
 
 > Quickly set up a new Linux server for ML research **without sudo**
 
-Auto Server Wizard is a modular bootstrap script that automatically installs common development tools into user-local directories (like `~/.local/bin`). Perfect for setting up remote servers, cloud instances, or any Linux environment where you don't have root access.
+Auto Setup is a modular bootstrap script that automatically installs common development tools into user-local directories (like `~/.local/bin`). Perfect for setting up remote servers, cloud instances, or any Linux environment where you don't have root access.
 
 ## Quick Start
 
 Run this one-liner on any new Linux server:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Eric2i/auto_server_wizard/main/setup.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Eric2i/auto_setup/main/setup.sh | bash
 ```
 
 That's it! The script will:
@@ -38,7 +38,7 @@ source ~/.bashrc  # or source ~/.zshrc if using zsh
 - ✅ **No sudo required** - Everything installs to user-local directories
 - ✅ **Idempotent** - Safe to run multiple times, won't reinstall existing tools
 - ✅ **Modular** - Each tool has its own installer script
-- ✅ **Clear output** - Status messages with `[auto_server_wizard]` prefix
+- ✅ **Clear output** - Status messages with `[auto_setup]` prefix
 - ✅ **One-liner install** - Works from a fresh `curl | bash`
 
 ## Architecture
@@ -87,7 +87,7 @@ To add support for a new tool:
 
 set -e
 
-PREFIX="[auto_server_wizard]"
+PREFIX="[auto_setup]"
 
 # Check if already installed
 if command -v mytool &> /dev/null; then
@@ -119,8 +119,8 @@ If you want to run the script manually (without the one-liner):
 
 ```bash
 # Clone the repository
-git clone https://github.com/Eric2i/auto_server_wizard.git
-cd auto_server_wizard
+git clone https://github.com/Eric2i/auto_setup.git
+cd auto_setup
 
 # Run the setup script
 ./setup.sh

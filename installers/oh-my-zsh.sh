@@ -3,7 +3,7 @@
 
 set -e
 
-PREFIX="[auto_server_wizard]"
+PREFIX="[auto_setup]"
 
 # Check if oh-my-zsh is already installed
 if [ -d "$HOME/.oh-my-zsh" ]; then
@@ -115,7 +115,7 @@ ZSHRC_EOF
     # Add PATH configuration if not already present
     if ! grep -q '.local/bin' "$ZSHRC"; then
         echo '' >> "$ZSHRC"
-        echo '# Added by auto_server_wizard' >> "$ZSHRC"
+        echo '# Added by auto_setup' >> "$ZSHRC"
         echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$ZSHRC"
     fi
     

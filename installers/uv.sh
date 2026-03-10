@@ -3,7 +3,7 @@
 
 set -e
 
-PREFIX="[auto_server_wizard]"
+PREFIX="[auto_setup]"
 
 # Check if uv is already installed and working
 if command -v uv &> /dev/null; then
