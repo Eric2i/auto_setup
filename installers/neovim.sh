@@ -3,7 +3,7 @@
 
 set -e
 
-PREFIX="[auto_server_wizard]"
+PREFIX="[auto_setup]"
 
 # Set defaults for environment variables if not provided by setup.sh
 if [ -z "$LOCAL_CONFIGS_DIR" ]; then
@@ -13,7 +13,7 @@ if [ -z "$LOCAL_CONFIGS_DIR" ]; then
 fi
 
 if [ -z "$GITHUB_RAW_BASE_CONFIGS" ]; then
-    GITHUB_RAW_BASE_CONFIGS="https://raw.githubusercontent.com/Eric2i/auto_server_wizard/main/configs"
+    GITHUB_RAW_BASE_CONFIGS="https://raw.githubusercontent.com/Eric2i/auto_setup/main/configs"
 fi
 
 # ============================================================================

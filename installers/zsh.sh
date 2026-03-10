@@ -3,7 +3,7 @@
 
 set -e
 
-PREFIX="[auto_server_wizard]"
+PREFIX="[auto_setup]"
 
 # Check if zsh is already available in PATH or system-wide
 if command -v zsh &> /dev/null; then

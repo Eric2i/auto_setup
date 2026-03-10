@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
-# setup.sh - Auto Server Wizard main orchestrator
+# setup.sh - Auto Setup main orchestrator
 # This script sets up a new Linux server without sudo by installing software user-locally
 
 set -e
 
-PREFIX="[auto_server_wizard]"
+PREFIX="[auto_setup]"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LOCAL_INSTALLERS_DIR="${SCRIPT_DIR}/installers"
 LOCAL_CONFIGS_DIR="${SCRIPT_DIR}/configs"
-GITHUB_RAW_BASE="https://raw.githubusercontent.com/Eric2i/auto_server_wizard/main/installers"
-GITHUB_RAW_BASE_CONFIGS="https://raw.githubusercontent.com/Eric2i/auto_server_wizard/main/configs"
+GITHUB_RAW_BASE="https://raw.githubusercontent.com/Eric2i/auto_setup/main/installers"
+GITHUB_RAW_BASE_CONFIGS="https://raw.githubusercontent.com/Eric2i/auto_setup/main/configs"
 
-echo "$PREFIX Starting Auto Server Wizard..."
+echo "$PREFIX Starting Auto Setup..."
 echo ""
 
 # Ensure ~/.local/bin exists
@@ -25,14 +25,14 @@ add_to_path() {
         if ! grep -q '\$HOME/.local/bin' "$shell_config"; then
             echo "$PREFIX Adding ~/.local/bin to PATH in $shell_config"
             echo '' >> "$shell_config"
-            echo '# Added by auto_server_wizard' >> "$shell_config"
+            echo '# Added by auto_setup' >> "$shell_config"
             echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$shell_config"
         else
             echo "$PREFIX ~/.local/bin already in PATH ($shell_config)"
         fi
     else
         echo "$PREFIX Creating $shell_config and adding PATH..."
-        echo '# Added by auto_server_wizard' > "$shell_config"
+        echo '# Added by auto_setup' > "$shell_config"
         echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$shell_config"
     fi
 }
